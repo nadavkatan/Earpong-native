@@ -4,7 +4,7 @@ import { AppContext } from "../../context/Context";
 
 const SoundButton = (props) => {
   const [correct, setCorrect] = useState(undefined);
-  const { checkAnswer, playRandomSound, setStep, mistakes, playSound } =
+  const { checkAnswer, playRandomSound, setStep, mistakes, playSound, updateHighestScore, setCurrentAvatar } =
     useContext(AppContext);
 
   const handleClick = () => {
@@ -13,10 +13,13 @@ const SoundButton = (props) => {
     //check if game over
     if (mistakes === 4) {
       setCorrect(undefined);
+      setCurrentAvatar('neutral')
+      updateHighestScore();
       setStep((prev) => prev + 1);
     } else {
       setTimeout(() => {
         setCorrect(undefined);
+        setCurrentAvatar('neutral')
         playRandomSound();
       }, 1000);
     }

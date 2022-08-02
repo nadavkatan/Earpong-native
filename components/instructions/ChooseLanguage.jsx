@@ -13,9 +13,11 @@ const ChooseLanguage = () => {
   return (
     <View style={styles.chooseLangWrapper}>
       <View style={styles.chooseLangContainer}>
-        <Text> Are you an 'A B C' or 'Do Re Mi' kind of musician?</Text>
-        <Button title="A B C" onPress={()=>handleLangChoice("english")}/>
-        <Button title="Do Re Me" onPress={()=>handleLangChoice("italian")}/>
+        <Text style={styles.chooseLangText}> Are you an 'A B C' or 'Do Re Mi' kind of musician?</Text>
+        <View style={styles.chooseLangButtonsContainer}>
+          <Button title="A B C" onPress={()=>handleLangChoice("english")}/>
+          <Button title="Do Re Me" onPress={()=>handleLangChoice("italian")}/>
+        </View>
       </View>
     </View>
   );
@@ -23,7 +25,7 @@ const ChooseLanguage = () => {
 
 const styles = StyleSheet.create({
   chooseLangWrapper: {
-    flex: 1,
+    flex: 4,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
@@ -31,6 +33,16 @@ const styles = StyleSheet.create({
   chooseLangContainer: {
     width: "80%",
   },
+  chooseLangText:{
+    fontSize:20,
+    lineHeight:40,
+    marginBottom: 30
+  },
+  chooseLangButtonsContainer:{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  }
 });
 
 export default ChooseLanguage;

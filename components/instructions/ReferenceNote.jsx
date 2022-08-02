@@ -14,7 +14,7 @@ const ReferenceNote = () => {
   return (
     <View style={styles.referenceWrapper}>
       <View style={styles.referenceContainer}>
-        <Text>
+        <Text style={styles.referenceText}>
           I will now play the note {language === "english" ? "C" : "Do"} for you
           to have a reference. Then, once your ready, click 'Start training.
         </Text>
@@ -29,13 +29,18 @@ const ReferenceNote = () => {
 
 const styles = StyleSheet.create({
   referenceWrapper: {
-    flex: 1,
+    flex: 4,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
   referenceContainer: {
     width: "80%",
+  },
+  referenceText:{
+    fontSize:20,
+    lineHeight:40,
+    marginBottom: 30
   },
 });
 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Button, View, StyleSheet, Text } from "react-native";
+import { Button, View, StyleSheet, Image } from "react-native";
 import Greeting from "../instructions/Greeting";
 import ChooseLanguage from "../instructions/ChooseLanguage";
 import ChooseSoundsAmount from "../instructions/ChooseSoundsAmount";
@@ -9,7 +9,7 @@ import { AppContext } from "../../context/Context";
 import GameOver from "../instructions/GameOver";
 
 const Home = () => {
-  const { step, score, mistakes } = useContext(AppContext);
+  const { step, currentAvatar } = useContext(AppContext);
   useEffect(() => {
     console.log('step: ',step);
   }, [step]);
@@ -28,6 +28,10 @@ const Home = () => {
       ) : step === 6 ? (
         <GameOver />
       ) : null}
+      <Image 
+      style={styles.avatar}
+        source={currentAvatar === 'neutral' ? require('../../assets/images/neutral.png') : require('../../assets/images/angry.png')}
+      />
     </View>
   );
 };
@@ -40,6 +44,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  avatar:{
+    flex: 3,
+    width: 300,
+    height:300,
+    
+  }
 });
 
 export default Home;
