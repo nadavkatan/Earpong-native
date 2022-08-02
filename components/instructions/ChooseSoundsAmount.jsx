@@ -12,7 +12,6 @@ const ChooseSoundsAmount = () => {
       <Text> How many sounds would you like your practice to consist?</Text>
         {
             buttonText.map((button, i)=>{
-              console.log(typeof i)
                 return <Button title={button.toString()} key={button} onPress={()=> handleSoundsAmountChoice(i+3)} />
             })
         }

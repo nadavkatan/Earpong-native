@@ -18,30 +18,30 @@ const Context = ({children}) => {
           active: false,
           text: [
             "do",
-            "do#",
+            "do #",
             "re",
-            "re#",
+            "re #",
             "mi",
             "fa",
-            "fa#",
+            "fa #",
             "sol",
-            "sol#",
+            "sol #",
             "la",
-            "la#",
+            "la #",
             "si",
           ],
           sounds: [
             "c",
-            "c+",
+            "c_sharp",
             "d",
-            "d+",
+            "d_sharp",
             "e",
             "f",
-            "f+",
+            "f_sharp",
             "g",
-            "g+",
+            "g_sharp",
             "a",
-            "a+",
+            "a_sharp",
             "b",
           ],
         },
@@ -57,16 +57,16 @@ const Context = ({children}) => {
           text: ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"],
           sounds: [
             "c",
-            "c+",
+            "c_sharp",
             "d",
-            "d+",
+            "d_sharp",
             "e",
             "f",
-            "f+",
+            "f_sharp",
             "g",
-            "g+",
+            "g_sharp",
             "a",
-            "a+",
+            "a_sharp",
             "b",
           ],
         },
@@ -77,6 +77,7 @@ const Context = ({children}) => {
         sound: "",
         index: "",
       });
+      const [sound, setSound] = useState();
       const [score, setScore] = useState(0);
       const [mistakes, setMistakes] = useState(0);
       const [step, setStep] = useState(1);
@@ -84,16 +85,16 @@ const Context = ({children}) => {
 
         //set the amount of sounds to be practiced on, set the active sound group and proceed to the next step
   const handleSoundsAmountChoice = (num)=>{
-    console.log(num)
     setSoundsAmount(num)
     if(language === "english"){
-        if(soundsAmount === 'chromatic'){
+        if(num === 12){
             setActiveSoundGroup(3)
         }else{
             setActiveSoundGroup(2)
         }
     }else{
-        if(soundsAmount === 'chromatic'){
+        if(num === 12){
+          console.log('italian chromatic')
             setActiveSoundGroup(1)
         }else{
             setActiveSoundGroup(0)
@@ -126,32 +127,31 @@ const getRandomSound = (sounds) => {
     });
     //play the random sound
     const { sound } = await getSound(randomSound);
+    setSound(sound);
      await sound.playAsync();
 };
 
-
-
-const playC = async() => {
-    const { sound } = await Audio.Sound.createAsync(
-        require('../assets/sounds/c.mp3')
-     );
-
-     await sound.playAsync();
-};
-
-  const checkAnswer = async(index) => {
-
+const playSound = async(index, soundName)=>{
+  if(soundName){
+    const { sound } = await getSound(soundName);
+    setSound(sound);
+    await sound.playAsync();
+  }else{
     const currentSoundGroup = soundGroups[activeSoundGroup];
     const { sound } = await getSound(currentSoundGroup.sounds[index]);
+    setSound(sound);
     await sound.playAsync();
+  }
+}
 
+  const checkAnswer = (index) => {
     // check if the index of button that the user pressed matches the index of the played sound (prevPlayedSound)
     if (index === prevPlayedSound.index) {
-      console.log("correct");
+      // console.log("correct");
       setScore((prev) => prev + 1);
       return true;
     } else {
-      console.log("wrong");
+      // console.log("wrong");
       setMistakes((prev) => prev + 1);
       return false;
     }
@@ -164,24 +164,20 @@ const playC = async() => {
   };
 
   useEffect(()=>{
-    console.log("step: ", step);
-    console.log("language: ", language);
-    console.log("activeSoundGroup: ", activeSoundGroup);
-  }, [step, language, activeSoundGroup])
-  
-  useEffect(()=>{
-    if(prevPlayedSound.index.length){
-        console.log("prevPlayedSound: ", prevPlayedSound);
-    }
-  },[prevPlayedSound])
+    return sound
+      ? () => {
+          sound.unloadAsync(); }
+      : undefined;
+  },[sound])
+
 
   return (
     <AppContext.Provider value={{
         soundGroups,
-        playC,
         setScore,
         reset,
         step,
+        playSound,
         setStep,
         language,
         setLanguage,

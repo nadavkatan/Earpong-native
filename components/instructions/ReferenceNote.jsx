@@ -3,10 +3,11 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { AppContext } from "../../context/Context";
 
 const ReferenceNote = () => {
-  const { setStep, playC, language } = useContext(AppContext);
+  const { setStep, playC, language, playSound } = useContext(AppContext);
 
   const handlePlayC = () => {
-    playC();
+    // playC();
+    playSound(null, 'c');
     setStep((prev) => prev + 1);
   };
 

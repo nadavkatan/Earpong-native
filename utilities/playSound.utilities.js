@@ -1,6 +1,7 @@
 import { Audio } from "expo-av";
 
-export const getSound = async (audioSound) => {
+export const getSound = async (audioSound, cb) => {
+  // let soundObj = new Audio.Sound();
   let soundObj;
   switch (audioSound) {
     case "a":
@@ -9,6 +10,12 @@ export const getSound = async (audioSound) => {
       );
       return soundObj;
       break;
+      case "a_sharp":
+        soundObj = await Audio.Sound.createAsync(
+          require("../assets/sounds/a_sharp.mp3")
+        );
+        return soundObj;
+        break;
     case "b":
       soundObj = await Audio.Sound.createAsync(
         require("../assets/sounds/b.mp3")
@@ -21,9 +28,9 @@ export const getSound = async (audioSound) => {
       );
       return soundObj;
       break;
-    case "c+":
+    case "c_sharp":
       soundObj = await Audio.Sound.createAsync(
-        require("../assets/sounds/c+.mp3")
+        require("../assets/sounds/c_sharp.mp3")
       );
       return soundObj;
       break;
@@ -33,9 +40,9 @@ export const getSound = async (audioSound) => {
       );
       return soundObj;
       break;
-    case "d+":
+    case "d_sharp":
       soundObj = await Audio.Sound.createAsync(
-        require("../assets/sounds/d+.mp3")
+        require("../assets/sounds/d_sharp.mp3")
       );
       return soundObj;
       break;
@@ -51,9 +58,9 @@ export const getSound = async (audioSound) => {
       );
       return soundObj;
       break;
-    case "f+":
+    case "f_sharp":
       soundObj = await Audio.Sound.createAsync(
-        require("../assets/sounds/f+.mp3")
+        require("../assets/sounds/f_sharp.mp3")
       );
       return soundObj;
       break;
@@ -63,11 +70,107 @@ export const getSound = async (audioSound) => {
       );
       return soundObj;
       break;
-    case "g+":
+    case "g_sharp":
       soundObj = await Audio.Sound.createAsync(
-        require("../assets/sounds/g+.mp3")
+        require("../assets/sounds/g_sharp.mp3")
       );
       return soundObj;
       break;
   }
 };
+
+// // export const getSound = async (audioSound) => {
+// //   let soundObj;
+// //   switch (audioSound) {
+// //     case "a":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/a.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //       case "a_sharp":
+// //         soundObj = await Audio.Sound.createAsync({
+// //           uri: "../assets/sounds/a_sharp.mp3",
+// //           shouldPlay: true
+// //          })
+// //          return soundObj
+// //          break;
+// //     case "b":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/b.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "c":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/c.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "c_sharp":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/c_sharp.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "d":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/d.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "d_sharp":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/d_sharp.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "e":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/e.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "f":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/f.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "f_sharp":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/f_sharp.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "g":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/g.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //     case "g_sharp":
+// //       soundObj = await Audio.Sound.createAsync({
+// //         uri: "../assets/sounds/g_sharp.mp3",
+// //         shouldPlay: true
+// //        })
+// //        return soundObj
+// //        break;
+// //   }
+// // };
+
+// export const getSound = async (audioSound) => {
+//   await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
+//   const playbackObject = new Audio.Sound();
+
+// }
