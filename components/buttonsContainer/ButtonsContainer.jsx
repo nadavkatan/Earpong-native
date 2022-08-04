@@ -6,6 +6,7 @@ import SoundButton from "../soundButton/SoundButton";
 const ButtonsContainer = () => {
   const {
     step,
+    setStep,
     activeSoundGroup,
     soundsAmount,
     playRandomSound,
@@ -14,12 +15,22 @@ const ButtonsContainer = () => {
     mistakes,
   } = useContext(AppContext);
 
+  const startPlay = ()=>{
+    playRandomSound()
+    setStep((prev) => prev + 1);
+  }
+
   return (
     <View style={styles.buttonsWrapper}>
-      <Text style={styles.buttonsContainerText}>Your highest score: {highestScore} </Text>
-      <Text style={styles.buttonsContainerText}>Score: {score}</Text>
-      <Text style={styles.buttonsContainerText}>mistakes: {mistakes}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.buttonsContainerText}>
+          Your highest score: {highestScore}{" "}
+        </Text>
+        <Text style={styles.buttonsContainerText}>Score: {score}</Text>
+        <Text style={styles.buttonsContainerText}>mistakes: {mistakes}</Text>
+      </View>
       <View style={styles.buttonsContainer}>
+        <View style={styles.soundButtonsContainer}>
         {activeSoundGroup.text.map((sound, i) => {
           if (i < soundsAmount) {
             return (
@@ -32,22 +43,23 @@ const ButtonsContainer = () => {
           }
         })}
       </View>
-      {step === 5 && (
-        <Button title="Start!" onPress={playRandomSound} />
-      )}
+      {step === 5 && <Button title="Start!" onPress={startPlay} />}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonsWrapper:{
+  buttonsWrapper: {
     display: "flex",
     flex: 4,
     justifyContent: "center",
-    alignItems: "center",
-
+    // alignItems: "center",
   },
-  buttonsContainer: {
+  buttonsContainer:{
+    flex: 4,
+  },
+  soundButtonsContainer: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -55,9 +67,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 10,
   },
-  buttonsContainerText:{
-    fontSize:20,
-    lineHeight:40,
+  buttonsContainerText: {
+    fontSize: 20,
+    lineHeight: 40,
+    color: "white",
+  },
+  textContainer: {
+    marginLeft: 40,
+    flex: 3,
+    display: "flex",
+    justifyContent: "center",
   },
 });
 

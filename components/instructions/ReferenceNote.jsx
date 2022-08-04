@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { AppContext } from "../../context/Context";
+import StyledContainer from "../styledContainer/StyledContainer";
 
 const ReferenceNote = () => {
   const { setStep, playC, language, playSound } = useContext(AppContext);
@@ -13,8 +14,9 @@ const ReferenceNote = () => {
 
   return (
     <View style={styles.referenceWrapper}>
-      <View style={styles.referenceContainer}>
-        <Text style={styles.referenceText}>
+      {/* <View style={styles.referenceContainer}> */}
+      <StyledContainer>
+      <Text style={styles.referenceText}>
           I will now play the note {language === "english" ? "C" : "Do"} for you
           to have a reference. Then, once your ready, click 'Start training.
         </Text>
@@ -22,7 +24,9 @@ const ReferenceNote = () => {
           title={`Play ${language === "english" ? "C" : "Do"}`}
           onPress={handlePlayC}
         />
-      </View>
+      </StyledContainer>
+
+      {/* </View> */}
     </View>
   );
 };
@@ -30,9 +34,9 @@ const ReferenceNote = () => {
 const styles = StyleSheet.create({
   referenceWrapper: {
     flex: 4,
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
   referenceContainer: {
     width: "80%",
@@ -40,7 +44,8 @@ const styles = StyleSheet.create({
   referenceText:{
     fontSize:20,
     lineHeight:40,
-    marginBottom: 30
+    marginBottom: 30,
+    color:'white'
   },
 });
 

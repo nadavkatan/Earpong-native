@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { AppContext } from "../../context/Context";
+import StyledContainer from '../styledContainer/StyledContainer';
 
 const ChooseSoundsAmount = () => {
     const { handleSoundsAmountChoice } = useContext(AppContext);
@@ -8,7 +9,7 @@ const ChooseSoundsAmount = () => {
 
   return (
     <View style={styles.chooseSoundsWrapper}>
-      <View style={styles.chooseSoundsContainer}>
+      <StyledContainer>
       <Text style={styles.chooseSoundsText}> How many sounds would you like your practice to consist?</Text>
       <View style={styles.chooseSoundsButtonsContainer}>
       {
@@ -19,7 +20,7 @@ const ChooseSoundsAmount = () => {
         <Button title="Chromatic" key='chromatic' onPress={()=> handleSoundsAmountChoice(12)} />
       </View>
 
-      </View>
+      </StyledContainer>
     </View>
   );
 };
@@ -27,9 +28,8 @@ const ChooseSoundsAmount = () => {
 const styles = StyleSheet.create({
     chooseSoundsWrapper: {
       flex: 4,
-        backgroundColor: "#fff",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-end",
       },
       chooseSoundsContainer: {
         width: "80%",
@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
       chooseSoundsText:{
         fontSize:20,
         lineHeight:40,
-        marginBottom: 30
+        marginBottom: 30,
+        color:'white'
       },
       chooseSoundsButtonsContainer:{
         display: "flex",

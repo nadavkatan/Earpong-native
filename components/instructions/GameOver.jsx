@@ -1,11 +1,13 @@
 import React, {useContext} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {AppContext} from '../../context/Context';
+import StyledContainer from '../styledContainer/StyledContainer';
 
 const GameOver = () => {
     const { score, reset } = useContext(AppContext);
   return (
     <View style={styles.gameOverWrapper}>
+    <StyledContainer>
         <Text style={styles.gameOverText}>Game over!</Text>
         <Text style={styles.gameOverText}>
         {score < 5
@@ -18,6 +20,7 @@ const GameOver = () => {
         <Button title="Play again" onPress={()=> reset(4)}/>
         <Button title="Change amount of sounds" onPress={()=> reset(3)}/>
       </View>
+      </StyledContainer>
     </View>
   )
 }
@@ -25,14 +28,14 @@ const GameOver = () => {
 const styles = StyleSheet.create({
   gameOverWrapper: {
     flex: 4,
-      backgroundColor: "#fff",
       alignItems: "center",
       justifyContent: "center",
     },
     gameOverText:{
       fontSize:20,
       // lineHeight:40,
-      marginBottom: 30
+      marginBottom: 30,
+      color:'white'
     },
 })
 

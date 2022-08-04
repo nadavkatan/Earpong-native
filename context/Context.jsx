@@ -77,7 +77,7 @@ const Context = ({children}) => {
       const [score, setScore] = useState(0);
       const [highestScore, setHighestScore] = useState(0);
       const [mistakes, setMistakes] = useState(0);
-      const [step, setStep] = useState(1);
+      const [step, setStep] = useState(0);
       const [language, setLanguage] = useState(undefined);
       const [currentAvatar, setCurrentAvatar] = useState('neutral');
 
